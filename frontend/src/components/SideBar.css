@@ -1,0 +1,29 @@
+.sidebar {
+    display: flex;
+    width: 20%;
+    height: 100%;
+    background-color: rgb(5, 4, 4, 0.971);
+    color: #fff;
+    flex-direction: column;
+  }
+  
+  .sidebar-header {
+    display: flex;
+    height: 150px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+  }
+  
+  .sidebar-item {
+    display: flex;
+    justify-content: center;
+    font-size: 24px;
+    height: 40px;
+  }
+  
+  .sidebar-item:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
