@@ -97,17 +97,17 @@ function DisplayBook() {
                     }}
                   >
                     <p
-                      style={{ color: "blue", cursor: "pointer" }}
+                      style={{ color: "blue" }}
                       onClick={() => navigate(`/books/add/${book.id}`)}
                     >
                       Edit
                     </p>
                     <p
-                      style={{ color: "blue", cursor: "pointer" }}
+                      style={{ color: "blue" }}
                       onClick={() => {
                         setModalOpen(true);
                         setBookId(book.id);
-                    }}
+                      }}
                     >
                       Delete
                     </p>
@@ -121,11 +121,22 @@ function DisplayBook() {
       <Modal isOpen={isModalOpen} style={customStyles} ariaHideApp={false}>
         <h3>Are you sure? This will delete the book permanantly.</h3>
         <div style={{ display: "flex", justifyContent: "flex-end", gap: 16 }}>
-          <button style={{ backgroundColor: "white", color: "black", cursor: "pointer" }} onClick={() => 
-                setModalOpen(false)}>
+          <button
+            style={{
+              backgroundColor: "white",
+              color: "black",
+              cursor: "pointer",
+            }}
+            onClick={() => setModalOpen(false)}
+          >
             Cancel
           </button>
-          <button style={{ backgroundColor: "red", cursor: "pointer" }} onClick={() => handleDelete(bookId)}>Delete</button>
+          <button
+            style={{ backgroundColor: "red",  }}
+            onClick={() => handleDelete(bookId)}
+          >
+            Delete
+          </button>
         </div>
       </Modal>
     </div>

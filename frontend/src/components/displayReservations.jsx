@@ -17,7 +17,7 @@ function DisplayReservations() {
   }, []);
 
   return (
-    <div className="db-container">
+    <div className="reservation-container">
       <div className="db-header">
         <p className="db-title">Reservation</p>
         <button
@@ -37,6 +37,7 @@ function DisplayReservations() {
                 <th>Book</th>
                 <th>Reservation Date</th>
                 <th>Return Date</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -53,6 +54,32 @@ function DisplayReservations() {
                   <td>
                     {new Date(reservation.return_date).toLocaleDateString()}
                   </td>
+                  <td>
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: 8,
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <p
+                        style={{ color: "blue" }}
+                        onClick={() => navigate(`/reservations/add/${reservation.id}`)}
+                      >
+                        Edit
+                      </p>
+                      <p
+                        style={{ color: "blue" }}
+                        onClick={() => {
+                          setModalOpen(true);
+                          setBookId(book.id);
+                        }}
+                      >
+                        Delete
+                      </p>
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -66,49 +93,3 @@ function DisplayReservations() {
 }
 
 export default DisplayReservations;
-// import React, { useState, useEffect } from 'react';
-
-// const DisplayReservations = () => {
-//   const [reservations, setReservations] = useState([]);
-
-//   useEffect(() => {
-//     fetch('http://localhost:3000/reservations')
-//       .then((response) => response.json())
-//       .then((data) => setReservations(data))
-//       .catch((error) => console.error('Error fetching reservations:', error));
-//   }, []);
-
-//   return (
-//     <div>
-//       <h2>Reservations List</h2>
-//       {reservations.length > 0 ? (
-//         <table>
-//           <thead>
-//             <tr>
-//               <th>ID</th>
-//               <th>User</th>
-//               <th>Book</th>
-//               <th>Reservation Date</th>
-//               <th>Return Date</th>
-//             </tr>
-//           </thead>
-//           <tbody>
-//             {reservations.map((reservation) => (
-//               <tr key={reservation.id}>
-//                 <td>{reservation.id}</td>
-//                 <td>{reservation.user.name}</td>
-//                 <td>{reservation.book.title}</td>
-//                 <td>{new Date(reservation.reservation_date).toLocaleDateString()}</td>
-//                 <td>{new Date(reservation.return_date).toLocaleDateString()}</td>
-//               </tr>
-//             ))}
-//           </tbody>
-//         </table>
-//       ) : (
-//         <p>No reservations found</p>
-//       )}
-//     </div>
-//   );
-// };
-
-// export default DisplayReservations;

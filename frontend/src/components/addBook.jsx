@@ -41,8 +41,6 @@ function AddOrUpdateBooks() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log({ title })
-
     // convert string into number
     const yearInNumber = parseInt(year, 10);
 
@@ -65,7 +63,9 @@ function AddOrUpdateBooks() {
       if (!response.ok) {
         throw response;
       }
-      toast(`Book ${isUpdate ? "updated" : "added"} successfully`, { type: "success" });
+      toast(`Book ${isUpdate ? "updated" : "added"} successfully`, {
+        type: "success",
+      });
       navigate("/books");
     } catch (error) {
       console.log(error);
@@ -75,9 +75,7 @@ function AddOrUpdateBooks() {
 
   return (
     <div className="book-container">
-      <p style={{ cursor: "pointer" }} onClick={() => navigate("/books")}>
-        Back
-      </p>
+      <p onClick={() => navigate("/books")}>Back</p>
       <h1 className="title">{`${isUpdate ? "Update" : "Add"} Book`}</h1>
       <form className="content">
         <div className="form-item">

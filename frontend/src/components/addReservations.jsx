@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AddOrUpdateReservation = () => {
   const [users, setUsers] = useState([]);
@@ -7,6 +8,8 @@ const AddOrUpdateReservation = () => {
   const [bookId, setBookId] = useState("");
   const [reservationDate, setReservationDate] = useState("");
   const [returnDate, setReturnDate] = useState("");
+
+  const navigate = useNavigate()
 
   useEffect(() => {
     // Fetch users
@@ -43,22 +46,28 @@ const AddOrUpdateReservation = () => {
       }
 
       const data = await response.json();
-      console.log("Reservation created:", data);
+      // console.log("Reservation created:", data);
       // Reset form fields
       setUserId("");
       setBookId("");
       setReservationDate("");
       setReturnDate("");
+      navigate("/reservations")
     } catch (error) {
       console.error("There was an error creating the reservation!", error);
     }
   };
   return (
     <div className="reservation-container">
+        <p onClick={() => navigate("/reservations")}>
+        Back
+      </p>
 
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="userId">User:</label>
+      {/* <h1 className="title">{`${isUpdate ? "Update" : "Add"} Reservation`}</h1> */}
+      <h1 className="title">Add Reservation</h1>
+    <form className="content">
+      <div className="form-item">
+        <label htmlFor="userId">User</label>
         <select
           id="userId"
           value={userId}
@@ -73,8 +82,8 @@ const AddOrUpdateReservation = () => {
           ))}
         </select>
       </div>
-      <div>
-        <label htmlFor="bookId">Book:</label>
+      <div className="form-item">
+        <label htmlFor="bookId">Book</label>
         <select
           id="bookId"
           value={bookId}
@@ -89,8 +98,8 @@ const AddOrUpdateReservation = () => {
           ))}
         </select>
       </div>
-      <div>
-        <label htmlFor="reservationDate">Reservation Date:</label>
+      <div className="form-item">
+        <label htmlFor="reservationDate">Reservation Date</label>
         <input
           type="datetime-local"
           id="reservationDate"
@@ -99,7 +108,7 @@ const AddOrUpdateReservation = () => {
           required
         />
       </div>
-      <div>
+      <div className="form-item">
         <label htmlFor="returnDate">Return Date:</label>
         <input
           type="datetime-local"
@@ -109,7 +118,7 @@ const AddOrUpdateReservation = () => {
           required
         />
       </div>
-      <button type="submit">Create Reservation</button>
+      <button type="submit" className="submit-button" onClick={handleSubmit}>Submit</button>
     </form>
     </div>
   );
